@@ -22,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         StoryFragment.newInstance();
 
         Story story = new Story("Selly Oak is dangerous", "More students stabbed");
+        Story.stories.add(story);
         AssetManager assetManager = getAssets();
         InputStream input;
         Bitmap image;
@@ -37,28 +38,30 @@ public class MainActivity extends AppCompatActivity {
             images.add(image);
             Story story3 = new Story("Hello", "World", image);
             Story.stories.add(story3);
+            Story story1 = new Story("Bee Movie", "According to all known laws " +
+                    "of aviation, " + "there is no way a bee " +
+                    "should be able to fly.\n" +
+                    "Its wings are too small to get " +
+                    "its fat little body off the ground.\n" +
+                    "The bee, of course, flies anyway" +
+                    "because bees don't care" +
+                    "what humans think is impossible.\n" +
+                    "Yellow, black. Yellow, black.\n" +
+                    "Yellow, black. Yellow, black.\n" +
+                    "Ooh, black and yellow!\n" +
+                    "Let's shake it up a little.\n" +
+                    "Barry! Breakfast is ready!", image);
+            Story.stories.add(story1);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Story story1 = new Story("Bee Movie", "According to all known laws" +
-                "of aviation, " + "there is no way a bee" +
-                "should be able to fly.\n" +
-                "Its wings are too small to get" +
-                "its fat little body off the ground.\n" +
-                "The bee, of course, flies anyway" +
-                "because bees don't care" +
-                "what humans think is impossible.\n" +
-                "Yellow, black. Yellow, black.\n" +
-                "Yellow, black. Yellow, black.\n" +
-                "Ooh, black and yellow!\n" +
-                "Let's shake it up a little.\n" +
-                "Barry! Breakfast is ready!");
+
         Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke", images);
         Story story4 = new Story("Hello", "World");
         Story story5 = new Story("Hello", "World");
         Story story6 = new Story("Hello", "World");
-        Story.stories.add(story);
-        Story.stories.add(story1);
+
+
         Story.stories.add(story2);
 
         Story.stories.add(story4);
@@ -69,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame, StoryFragment.newInstance());
         transaction.commit();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
         case R.id.action_settings:
             return true;
         case R.id.action_about:
-            return true;
-        case R.id.menu_refresh:
             return true;
         default:
             return super.onOptionsItemSelected(item);

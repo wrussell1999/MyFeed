@@ -1,6 +1,5 @@
 package com.will_russell.myfeed;
 
-import android.app.VoiceInteractor;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -103,7 +102,7 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
                 String content = "";
                 ArrayList<Bitmap> images = new ArrayList<>();
                 Story.stories.add(new Story(title, content, images));
-            }, error -> Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_LONG).show());
+            }, error -> Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_SHORT).show());
             queue.add(stringRequest);
         } catch (Exception e) {
             e.printStackTrace();
