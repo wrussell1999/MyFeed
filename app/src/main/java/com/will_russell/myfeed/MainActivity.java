@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
         Story story4 = new Story("Hello", "World");
         Story story5 = new Story("Hello", "World");
         Story story6 = new Story("Hello", "World");
-        Story.stories.add(story);
-        Story.stories.add(story1);
-        Story.stories.add(story2);
-        Story.stories.add(story3);
-        Story.stories.add(story4);
-        Story.stories.add(story5);
-        Story.stories.add(story6);
+        Story.Companion.getStories().add(story);
+        Story.Companion.getStories().add(story1);
+        Story.Companion.getStories().add(story2);
+        Story.Companion.getStories().add(story3);
+        Story.Companion.getStories().add(story4);
+        Story.Companion.getStories().add(story5);
+        Story.Companion.getStories().add(story6);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, StoryFragment.newInstance());

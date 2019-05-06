@@ -30,14 +30,14 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return Story.stories.size();
+        return Story.Companion.getStories().size();
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.mItem = Story.stories.get(position);
-        holder.titleView.setText(Story.stories.get(position).getTitle());
-        holder.contentView.setText(Story.stories.get(position).getContent());
+        holder.mItem = Story.Companion.getStories().get(position);
+        holder.titleView.setText(Story.Companion.getStories().get(position).getTitle());
+        holder.contentView.setText(Story.Companion.getStories().get(position).getContent());
     }
 
 

@@ -102,7 +102,7 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         StringRequest stringRequest = new StringRequest(Request.Method.GET, SERVER_URL, response -> {
             String title = response;
             String content = "";
-            Story.stories.add(new Story(title, content));
+            Story.Companion.getStories().add(new Story(title, content));
         }, error -> Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_LONG).show());
         queue.add(stringRequest);
         mSwipeRefreshLayout.setRefreshing(false);
