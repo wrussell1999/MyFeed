@@ -1,25 +1,16 @@
 package com.will_russell.myfeed;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
-import android.widget.TextView;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,33 +23,25 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         StoryFragment.newInstance();
 
-        Story story = new Story("Selly Oak is dangerous", "More students stabbed");
-        Story story1 = new Story("Bee Movie", "According to all known laws\n" +
-                "of aviation,\n" +
-                "\n" +
-                "there is no way a bee\n" +
+        Story story = new Story("Selly Oak is dangerous", "More students stabbed", new ArrayList<Bitmap>());
+        Story story1 = new Story("Bee Movie", "According to all known laws" +
+                "of aviation, " + "there is no way a bee" +
                 "should be able to fly.\n" +
-                "\n" +
-                "Its wings are too small to get\n" +
+                "Its wings are too small to get" +
                 "its fat little body off the ground.\n" +
-                "\n" +
-                "The bee, of course, flies anyway\n" +
-                "\n" +
-                "because bees don't care\n" +
+                "The bee, of course, flies anyway" +
+                "because bees don't care" +
                 "what humans think is impossible.\n" +
-                "\n" +
                 "Yellow, black. Yellow, black.\n" +
                 "Yellow, black. Yellow, black.\n" +
-                "\n" +
                 "Ooh, black and yellow!\n" +
                 "Let's shake it up a little.\n" +
-                "\n" +
-                "Barry! Breakfast is ready!");
-        Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke");
-        Story story3 = new Story("Hello", "World");
-        Story story4 = new Story("Hello", "World");
-        Story story5 = new Story("Hello", "World");
-        Story story6 = new Story("Hello", "World");
+                "Barry! Breakfast is ready!", new ArrayList<Bitmap>());
+        Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke", new ArrayList<Bitmap>());
+        Story story3 = new Story("Hello", "World", new ArrayList<Bitmap>());
+        Story story4 = new Story("Hello", "World", new ArrayList<Bitmap>());
+        Story story5 = new Story("Hello", "World", new ArrayList<Bitmap>());
+        Story story6 = new Story("Hello", "World", new ArrayList<Bitmap>());
         Story.Companion.getStories().add(story);
         Story.Companion.getStories().add(story1);
         Story.Companion.getStories().add(story2);

@@ -2,6 +2,7 @@ package com.will_russell.myfeed;
 
 import android.app.VoiceInteractor;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +13,12 @@ import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
+import java.util.ArrayList;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -102,7 +101,8 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         StringRequest stringRequest = new StringRequest(Request.Method.GET, SERVER_URL, response -> {
             String title = response;
             String content = "";
-            Story.Companion.getStories().add(new Story(title, content));
+            ArrayList<Bitmap> images = new ArrayList<>();
+            Story.Companion.getStories().add(new Story(title, content, images));
         }, error -> Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_LONG).show());
         queue.add(stringRequest);
         mSwipeRefreshLayout.setRefreshing(false);

@@ -4,9 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.android.material.button.MaterialButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +37,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         holder.mItem = Story.Companion.getStories().get(position);
         holder.titleView.setText(Story.Companion.getStories().get(position).getTitle());
         holder.contentView.setText(Story.Companion.getStories().get(position).getContent());
+        //holder.imageView.setImageBitmap(Story.Companion.getStories().get(position).getImages().get(0));
     }
 
 
@@ -45,6 +45,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         public final View mView;
         public final TextView titleView;
         public final TextView contentView;
+        public final ImageView imageView;
 
         public Story mItem;
 
@@ -53,6 +54,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
             mView = view;
             titleView = view.findViewById(R.id.titleView);
             contentView = view.findViewById(R.id.contentView);
+            imageView = view.findViewById(R.id.imageView);
         }
     }
 }
