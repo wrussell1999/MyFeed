@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         StoryFragment.newInstance();
 
-        Story story = new Story("Hello", "World");
+        Story story = new Story("Selly Oak is dangerous", "More students stabbed");
         Story story1 = new Story("Bee Movie", "According to all known laws\n" +
                 "of aviation,\n" +
                 "\n" +
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 "Let's shake it up a little.\n" +
                 "\n" +
                 "Barry! Breakfast is ready!");
-        Story story2 = new Story("Hello", "World");
+        Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke");
         Story story3 = new Story("Hello", "World");
         Story story4 = new Story("Hello", "World");
         Story story5 = new Story("Hello", "World");

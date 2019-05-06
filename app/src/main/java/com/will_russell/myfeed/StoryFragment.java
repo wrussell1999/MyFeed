@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
+    private final String SERVER_URL = "";
     private InteractionListener mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     public static StoryAdapter adapter;
@@ -58,24 +63,15 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
                 android.R.color.holo_orange_dark,
                 android.R.color.holo_blue_dark);
 
-        mSwipeRefreshLayout.post(new Runnable() {
-
-            @Override
-            public void run() {
-
-                mSwipeRefreshLayout.setRefreshing(true);
-
-                // Fetching data from server
-                loadRecyclerViewData();
-            }
+        mSwipeRefreshLayout.post(() -> {
+            mSwipeRefreshLayout.setRefreshing(true);
+            loadRecyclerViewData();
         });
         return view;
     }
 
     @Override
     public void onRefresh() {
-
-        // Fetching data from server
         loadRecyclerViewData();
     }
 
@@ -87,6 +83,15 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     {
         mSwipeRefreshLayout.setRefreshing(true);
         // HTTP Request
+        HttpURLConnection client = null;
+        try {
+            URL url = new URL(SERVER_URL);
+            client = (HttpURLConnection) url.openConnection();
+            client.setRequestMethod("GET");
+            client.setUseCaches(false);
+        } catch (Exception e) {
+            Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_LONG);
+        }
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
