@@ -1,11 +1,24 @@
 package com.will_russell.myfeed;
 
+import android.app.VoiceInteractor;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -83,17 +96,21 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     {
         mSwipeRefreshLayout.setRefreshing(true);
         // HTTP Request
-        HttpURLConnection client = null;
-        try {
-            URL url = new URL(SERVER_URL);
-            client = (HttpURLConnection) url.openConnection();
-            client.setRequestMethod("GET");
-            client.setUseCaches(false);
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_LONG);
-        }
+        RequestQueue queue;
+        Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024);
+        Network network = new BasicNetwork(new HurlStack());
+        queue = new RequestQueue(cache, network);
+        queue.start();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, SERVER_URL, response -> {
+            String title = response;
+            String content = "";
+            Story.stories.add(new Story(title, content));
+        }, error -> Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_LONG));
+        queue.add(stringRequest);
         mSwipeRefreshLayout.setRefreshing(false);
     }
+
 
     public interface InteractionListener {
         void interactionListener(Story item);
