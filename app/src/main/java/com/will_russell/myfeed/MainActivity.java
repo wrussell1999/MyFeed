@@ -5,11 +5,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +26,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         StoryFragment.newInstance();
 
-        Story story = new Story("Selly Oak is dangerous", "More students stabbed", new ArrayList<Bitmap>());
+        Story story = new Story("Selly Oak is dangerous", "More students stabbed");
+        AssetManager assetManager = getAssets();
+        InputStream input;
+        Bitmap image;
+        ArrayList<Bitmap> images = new ArrayList<>();
+        try {
+            input = assetManager.open("bee.jpg");
+            image = BitmapFactory.decodeStream(input);
+            images.add(image);
+            Story story3 = new Story("Hello", "World", image);
+            Story.stories.add(story3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Story story1 = new Story("Bee Movie", "According to all known laws" +
                 "of aviation, " + "there is no way a bee" +
                 "should be able to fly.\n" +
@@ -36,19 +52,18 @@ public class MainActivity extends AppCompatActivity {
                 "Yellow, black. Yellow, black.\n" +
                 "Ooh, black and yellow!\n" +
                 "Let's shake it up a little.\n" +
-                "Barry! Breakfast is ready!", new ArrayList<Bitmap>());
-        Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke", new ArrayList<Bitmap>());
-        Story story3 = new Story("Hello", "World", new ArrayList<Bitmap>());
-        Story story4 = new Story("Hello", "World", new ArrayList<Bitmap>());
-        Story story5 = new Story("Hello", "World", new ArrayList<Bitmap>());
-        Story story6 = new Story("Hello", "World", new ArrayList<Bitmap>());
-        Story.Companion.getStories().add(story);
-        Story.Companion.getStories().add(story1);
-        Story.Companion.getStories().add(story2);
-        Story.Companion.getStories().add(story3);
-        Story.Companion.getStories().add(story4);
-        Story.Companion.getStories().add(story5);
-        Story.Companion.getStories().add(story6);
+                "Barry! Breakfast is ready!");
+        Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke", images);
+        Story story4 = new Story("Hello", "World");
+        Story story5 = new Story("Hello", "World");
+        Story story6 = new Story("Hello", "World");
+        Story.stories.add(story);
+        Story.stories.add(story1);
+        Story.stories.add(story2);
+
+        Story.stories.add(story4);
+        Story.stories.add(story5);
+        Story.stories.add(story6);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, StoryFragment.newInstance());

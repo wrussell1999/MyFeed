@@ -29,16 +29,18 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return Story.Companion.getStories().size();
+        return Story.stories.size();
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.mItem = Story.Companion.getStories().get(position);
-        holder.titleView.setText(Story.Companion.getStories().get(position).getTitle());
-        holder.contentView.setText(Story.Companion.getStories().get(position).getContent());
-        if (Story.Companion.getStories().size() > 0) {
-            holder.imageView.setImageBitmap(Story.Companion.getStories().get(position).getImages().get(0));
+        holder.mItem = Story.stories.get(position);
+        holder.titleView.setText(Story.stories.get(position).getTitle());
+        holder.contentView.setText(Story.stories.get(position).getContent());
+        if (Story.stories.get(position).getImages().size() > 0) {
+            holder.imageView.setImageBitmap(Story.stories.get(position).getImages().get(0));
+        } else {
+            holder.imageView.setVisibility(View.GONE);
         }
     }
 
