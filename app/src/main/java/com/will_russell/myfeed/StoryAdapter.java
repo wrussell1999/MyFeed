@@ -37,7 +37,9 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         holder.mItem = Story.Companion.getStories().get(position);
         holder.titleView.setText(Story.Companion.getStories().get(position).getTitle());
         holder.contentView.setText(Story.Companion.getStories().get(position).getContent());
-        //holder.imageView.setImageBitmap(Story.Companion.getStories().get(position).getImages().get(0));
+        if (Story.Companion.getStories().size() > 0) {
+            holder.imageView.setImageBitmap(Story.Companion.getStories().get(position).getImages().get(0));
+        }
     }
 
 
