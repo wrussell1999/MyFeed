@@ -95,7 +95,6 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     private void loadRecyclerViewData()
     {
         mSwipeRefreshLayout.setRefreshing(true);
-        // HTTP Request
         RequestQueue queue;
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(), 1024 * 1024);
         Network network = new BasicNetwork(new HurlStack());
