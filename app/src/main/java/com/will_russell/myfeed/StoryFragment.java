@@ -97,14 +97,18 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         Network network = new BasicNetwork(new HurlStack());
         queue = new RequestQueue(cache, network);
         queue.start();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, SERVER_URL, response -> {
-            String title = response;
-            String content = "";
-            ArrayList<Bitmap> images = new ArrayList<>();
-            Story.stories.add(new Story(title, content, images));
-        }, error -> Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_LONG).show());
-        queue.add(stringRequest);
+        try {
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, SERVER_URL, response -> {
+                String title = response;
+                String content = "";
+                ArrayList<Bitmap> images = new ArrayList<>();
+                Story.stories.add(new Story(title, content, images));
+            }, error -> Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_LONG).show());
+            queue.add(stringRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        notifyUpdate();
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
