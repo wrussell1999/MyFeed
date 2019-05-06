@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class StoryFragment extends Fragment {
+public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private InteractionListener mListener;
+    SwipeRefreshLayout mSwipeRefreshLayout;
     public static StoryAdapter adapter;
 
     public StoryFragment() {}
@@ -43,16 +45,49 @@ public class StoryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.story_item_list, container, false);
         Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view;
+        RecyclerView recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
         adapter = new StoryAdapter(mListener, getContext());
         recyclerView.setAdapter(adapter);
+
+        mSwipeRefreshLayout = view.findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+
+        mSwipeRefreshLayout.post(new Runnable() {
+
+            @Override
+            public void run() {
+
+                mSwipeRefreshLayout.setRefreshing(true);
+
+                // Fetching data from server
+                loadRecyclerViewData();
+            }
+        });
         return view;
+    }
+
+    @Override
+    public void onRefresh() {
+
+        // Fetching data from server
+        loadRecyclerViewData();
     }
 
     public static void notifyUpdate() {
         adapter.notifyDataSetChanged();
+    }
+
+    private void loadRecyclerViewData()
+    {
+        mSwipeRefreshLayout.setRefreshing(true);
+        // HTTP Request
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     public interface InteractionListener {
