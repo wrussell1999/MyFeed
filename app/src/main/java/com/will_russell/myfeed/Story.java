@@ -78,7 +78,7 @@ public class Story {
     }
 
     public void setDate(String date) {
-
+        this.date = date;
     }
 
     public static List<Story> stories = new ArrayList<>();
