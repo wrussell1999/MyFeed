@@ -13,6 +13,8 @@ public class Story {
     private String source;
     private Bitmap sourceLogo;
     private String date;
+    
+    public static List<Story> stories = new ArrayList<>();
 
     public Story(String title, String content) {
         this.title = title;
@@ -31,6 +33,21 @@ public class Story {
         this.title = title;
         this.content = content;
         this.images = images;
+    }
+    
+    public Story(String title, String content, String source) {
+        this.title = title;
+        this.content = content;
+        this.images = new ArrayList<>();
+        this.source = source;
+    }
+    
+    public Story(String title, String content, String source, Bitmap sourceLogo) {
+        this.title = title;
+        this.content = content;
+        this.images = new ArrayList<>();
+        this.source = source;
+        this.sourceLogo = sourceLogo;
     }
 
     public String getTitle() {
@@ -80,6 +97,4 @@ public class Story {
     public void setDate(String date) {
         this.date = date;
     }
-
-    public static List<Story> stories = new ArrayList<>();
 }
