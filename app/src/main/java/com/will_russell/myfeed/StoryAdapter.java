@@ -43,8 +43,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
             holder.imageView.setVisibility(View.GONE);
         }
         holder.mView.setClickable(true);
-        holder.mView.setOnClickListener(v -> ((MainActivity) holder.mView.getContext()).openStoryFragment(holder.getItemId()));
-
+        holder.mView.setOnClickListener(v -> ((MainActivity) holder.mView.getContext()).openStory(position));
     }
 
 
@@ -62,6 +61,10 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
             titleView = view.findViewById(R.id.titleView);
             contentView = view.findViewById(R.id.contentView);
             imageView = view.findViewById(R.id.imageView);
+        }
+
+        private void bind(Story item) {
+
         }
     }
 }

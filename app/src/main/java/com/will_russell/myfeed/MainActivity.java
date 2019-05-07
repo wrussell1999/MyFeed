@@ -3,7 +3,6 @@ package com.will_russell.myfeed;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.AssetManager;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     "should be able to fly.\n" +
                     "Its wings are too small to get " +
                     "its fat little body off the ground.\n" +
-                    "The bee, of course, flies anyway" +
+                    "The bee, of course, flies anyway " +
                     "because bees don't care" +
                     "what humans think is impossible.\n" +
                     "Yellow, black. Yellow, black.\n" +
@@ -69,8 +68,7 @@ public class MainActivity extends AppCompatActivity {
         Story.stories.add(story6);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        Fragment fragment = ExpandedStoryFragment.newInstance();
-        transaction.replace(R.id.frame, StoryFragment.newInstance(fragment));
+        transaction.replace(R.id.frame, StoryFragment.newInstance());
         transaction.commit();
     }
 
@@ -92,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void openStoryFragment(long id) {
-
+    public void openStory(int position) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame, ExpandedStoryFragment.newInstance(Story.stories.get(position)));
+        transaction.commit();
     }
 }

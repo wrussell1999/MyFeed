@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 public class ExpandedStoryFragment extends Fragment {
 
-    public static ExpandedStoryFragment newInstance() {
+    private TextView contentView;
+    private Story story;
+
+    public static ExpandedStoryFragment newInstance(Story story) {
         ExpandedStoryFragment fragment = new ExpandedStoryFragment();
+        fragment.story = story;
         return fragment;
     }
 
@@ -33,7 +39,12 @@ public class ExpandedStoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.story_item_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_story, container, false);
+        contentView = view.findViewById(R.id.contentView);
+        contentView.setText(story.getContent());
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle(story.getTitle());
         return view;
     }
 }
