@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 public class ExpandedStoryFragment extends Fragment {
 
+    private ImageView headerImageView;
     private TextView contentView;
     private Story story;
 
@@ -42,9 +43,13 @@ public class ExpandedStoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_story, container, false);
         contentView = view.findViewById(R.id.contentView);
         contentView.setText(story.getContent());
+        headerImageView = view.findViewById(R.id.headerImageView);
+        if (story.getImages().size() > 0) {
+            headerImageView.setImageBitmap(story.getImages().get(0));
+        } else {
+            headerImageView.setVisibility(View.GONE);
+        }
 
-        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle(story.getTitle());
         return view;
     }
 }

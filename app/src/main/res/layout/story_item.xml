@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="@dimen/card_height">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/card_margin"
         app:cardElevation="4dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="@dimen/card_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,18 +28,18 @@
                     android:id="@+id/titleView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"
+                    android:padding="@dimen/card_padding"
                     android:text="@string/action_about"
                     android:textColor="@color/textColor"
-                    android:textSize="22dp" />
+                    android:textSize="@dimen/title_text_size" />
 
                 <TextView
                     android:id="@+id/contentView"
                     android:layout_width="wrap_content"
-                    android:layout_height=  "wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingBottom="16dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/card_padding"
+                    android:paddingRight="@dimen/card_padding"
+                    android:paddingBottom="@dimen/card_padding"
                     android:maxLines="6"
                     android:text="Content"
                     android:textColor="@color/textColor" />
@@ -48,7 +48,7 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="120dp"
+                android:layout_width="@dimen/image_preview_width"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:scaleType="centerCrop"
