@@ -8,6 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -19,23 +24,20 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.ArrayList;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private final String SERVER_URL = "";
     private InteractionListener mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     public static StoryAdapter adapter;
+    private Fragment hostedFragment;
 
     public StoryFragment() {}
 
-    public static StoryFragment newInstance() {
-        StoryFragment fragment = new StoryFragment();
-        return fragment;
+    public static StoryFragment newInstance(Fragment fragment) {
+        StoryFragment storyFragment = new StoryFragment();
+        storyFragment.hostedFragment = fragment;
+        return storyFragment;
     }
 
     @Override
@@ -59,6 +61,11 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.story_item_list, container, false);
         Context context = view.getContext();
+
+        if (hostedFragment != null) {
+            replaceFragment(hostedFragment);
+        }
+
         RecyclerView recyclerView = view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setHasFixedSize(true);
@@ -109,6 +116,10 @@ public class StoryFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         }
         notifyUpdate();
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    public void replaceFragment(Fragment fragment) {
+        getChildFragmentManager().beginTransaction().replace(R.id.hosted_fragment, fragment).commit();
     }
 
 

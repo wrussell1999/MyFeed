@@ -3,6 +3,7 @@ package com.will_russell.myfeed;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.res.AssetManager;
@@ -24,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        StoryFragment.newInstance();
 
         Story story = new Story("Selly Oak is dangerous", "More students stabbed");
         Story.stories.add(story);
@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         Story.stories.add(story6);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, StoryFragment.newInstance());
+        Fragment fragment = ExpandedStoryFragment.newInstance();
+        transaction.replace(R.id.frame, StoryFragment.newInstance(fragment));
         transaction.commit();
     }
 
@@ -89,5 +90,9 @@ public class MainActivity extends AppCompatActivity {
         default:
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void openStoryFragment(long id) {
+
     }
 }

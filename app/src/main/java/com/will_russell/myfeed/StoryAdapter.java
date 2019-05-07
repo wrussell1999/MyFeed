@@ -42,6 +42,9 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         } else {
             holder.imageView.setVisibility(View.GONE);
         }
+        holder.mView.setClickable(true);
+        holder.mView.setOnClickListener(v -> ((MainActivity) holder.mView.getContext()).openStoryFragment(holder.getItemId()));
+
     }
 
 

@@ -44,14 +44,15 @@
                     android:textAlignment="center"
                     android:textColor="@android:color/white" />
             </LinearLayout>
+
         </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
     </FrameLayout>
 
 </LinearLayout>
