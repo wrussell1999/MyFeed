@@ -11,12 +11,12 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,8 +91,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openStory(int position) {
+        Story story = Story.stories.get(position);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, ExpandedStoryFragment.newInstance(Story.stories.get(position)));
+        transaction.replace(R.id.frame, ExpandedStoryFragment.newInstance(story));
+        transaction.addToBackStack("expanded");
+        transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
+        TextView title = findViewById(R.id.toolbar_title);
+        title.setText(story.getTitle());
         transaction.commit();
     }
 }
