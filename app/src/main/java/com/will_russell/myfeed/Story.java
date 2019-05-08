@@ -13,6 +13,7 @@ public class Story {
     private String source;
     private Bitmap sourceLogo;
     private String date;
+    private String[] tags;
     
     public static List<Story> stories = new ArrayList<>();
 
@@ -50,6 +51,23 @@ public class Story {
         this.sourceLogo = sourceLogo;
     }
 
+    public Story(String title, String content, Bitmap image, String source, Bitmap sourceLogo) {
+        this.title = title;
+        this.content = content;
+        this.images = new ArrayList<>();
+        this.images.add(image);
+        this.source = source;
+        this.sourceLogo = sourceLogo;
+    }
+
+    public Story(String title, String content, ArrayList<Bitmap> images, String source, Bitmap sourceLogo) {
+        this.title = title;
+        this.content = content;
+        this.images = images;
+        this.source = source;
+        this.sourceLogo = sourceLogo;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -74,6 +92,14 @@ public class Story {
         return date;
     }
 
+    public String[] getTags() {
+        return tags;
+    }
+
+    public String getTag(int index) {
+        return tags[index];
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -96,5 +122,13 @@ public class Story {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+
+    public void setTag(int index, String tag) {
+        tags[index] = tag;
     }
 }

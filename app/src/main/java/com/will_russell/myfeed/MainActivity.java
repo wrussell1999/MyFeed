@@ -2,8 +2,6 @@ package com.will_russell.myfeed;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -62,8 +60,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             loadRecyclerViewData();
         });
 
-
-
         Story story = new Story("Selly Oak is dangerous and wild. Please be careful", "More students stabbed");
         Story.stories.add(story);
         AssetManager assetManager = getAssets();
@@ -76,239 +72,109 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             images.add(image);
             Story story3 = new Story("Hello", "World", image);
             Story.stories.add(story3);
-            Story story1 = new Story("Bee Movie", "  \n" +
-                    "According to all known laws\n" +
-                    "of aviation,\n" +
-                    "\n" +
-                    "  \n" +
-                    "there is no way a bee\n" +
-                    "should be able to fly.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Its wings are too small to get\n" +
-                    "its fat little body off the ground.\n" +
-                    "\n" +
-                    "  \n" +
-                    "The bee, of course, flies anyway\n" +
-                    "\n" +
-                    "  \n" +
-                    "because bees don't care\n" +
-                    "what humans think is impossible.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Yellow, black. Yellow, black.\n" +
-                    "Yellow, black. Yellow, black.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Ooh, black and yellow!\n" +
-                    "Let's shake it up a little.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Barry! Breakfast is ready!\n" +
-                    "\n" +
-                    "  \n" +
-                    "Ooming!\n" +
-                    "\n" +
-                    "  \n" +
-                    "Hang on a second.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Hello?\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Barry?\n" +
-                    "- Adam?\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Oan you believe this is happening?\n" +
-                    "- I can't. I'll pick you up.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Looking sharp.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Use the stairs. Your father\n" +
-                    "paid good money for those.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Sorry. I'm excited.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Here's the graduate.\n" +
-                    "We're very proud of you, son.\n" +
-                    "\n" +
-                    "  \n" +
-                    "A perfect report card, all B's.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Very proud.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Ma! I got a thing going here.\n" +
-                    "\n" +
-                    "  \n" +
-                    "- You got lint on your fuzz.\n" +
-                    "- Ow! That's me!\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Wave to us! We'll be in row 118,000.\n" +
-                    "- Bye!\n" +
-                    "\n" +
-                    "  \n" +
-                    "Barry, I told you,\n" +
-                    "stop flying in the house!\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Hey, Adam.\n" +
-                    "- Hey, Barry.\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Is that fuzz gel?\n" +
-                    "- A little. Special day, graduation.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Never thought I'd make it.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Three days grade school,\n" +
-                    "three days high school.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Those were awkward.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Three days college. I'm glad I took\n" +
-                    "a day and hitchhiked around the hive.\n" +
-                    "\n" +
-                    "  \n" +
-                    "You did come back different.\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Hi, Barry.\n" +
-                    "- Artie, growing a mustache? Looks good.\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Hear about Frankie?\n" +
-                    "- Yeah.\n" +
-                    "\n" +
-                    "  \n" +
-                    "- You going to the funeral?\n" +
-                    "- No, I'm not going.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Everybody knows,\n" +
-                    "sting someone, you die.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Don't waste it on a squirrel.\n" +
-                    "Such a hothead.\n" +
-                    "\n" +
-                    "  \n" +
-                    "I guess he could have\n" +
-                    "just gotten out of the way.\n" +
-                    "\n" +
-                    "  \n" +
-                    "I love this incorporating\n" +
-                    "an amusement park into our day.\n" +
-                    "\n" +
-                    "  \n" +
-                    "That's why we don't need vacations.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Boy, quite a bit of pomp...\n" +
-                    "under the circumstances.\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Well, Adam, today we are men.\n" +
-                    "- We are!\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Bee-men.\n" +
-                    "- Amen!\n" +
-                    "\n" +
-                    "  \n" +
-                    "Hallelujah!\n" +
-                    "\n" +
-                    "  \n" +
-                    "Students, faculty, distinguished bees,\n" +
-                    "\n" +
-                    "  \n" +
-                    "please welcome Dean Buzzwell.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Welcome, New Hive Oity\n" +
-                    "graduating class of...\n" +
-                    "\n" +
-                    "  \n" +
-                    "...9:15.\n" +
-                    "\n" +
-                    "  \n" +
-                    "That concludes our ceremonies.\n" +
-                    "\n" +
-                    "  \n" +
-                    "And begins your career\n" +
-                    "at Honex Industries!\n" +
-                    "\n" +
-                    "  \n" +
-                    "Will we pick ourjob today?\n" +
-                    "\n" +
-                    "  \n" +
-                    "I heard it's just orientation.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Heads up! Here we go.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Keep your hands and antennas\n" +
-                    "inside the tram at all times.\n" +
-                    "\n" +
-                    "  \n" +
-                    "- Wonder what it'll be like?\n" +
-                    "- A little scary.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Welcome to Honex,\n" +
-                    "a division of Honesco\n" +
-                    "\n" +
-                    "  \n" +
-                    "and a part of the Hexagon Group.\n" +
-                    "\n" +
-                    "  \n" +
-                    "This is it!\n" +
-                    "\n" +
-                    "  \n" +
-                    "Wow.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Wow.\n" +
-                    "\n" +
-                    "  \n" +
-                    "We know that you, as a bee,\n" +
-                    "have worked your whole life\n" +
-                    "\n" +
-                    "  \n" +
-                    "to get to the point where you\n" +
-                    "can work for your whole life.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Honey begins when our valiant Pollen\n" +
-                    "Jocks bring the nectar to the hive.\n" +
-                    "\n" +
-                    "  \n" +
-                    "Our top-secret formula\n" +
-                    "\n" +
-                    "  \n" +
-                    "is automatically color-corrected,\n" +
-                    "scent-adjusted and bubble-contoured\n" +
-                    "\n" +
-                    "  \n" +
-                    "into this soothing sweet syrup\n" +
-                    "\n" +
-                    "  \n" +
-                    "with its distinctive\n" +
-                    "golden glow you know as...\n" +
-                    "\n" +
-                    "  \n" +
+            Story story1 = new Story("Bee Movie", "" +
+                    "According to all known laws" +
+                    " of aviation, " +
+                    "there is no way a bee" +
+                    "should be able to fly." +
+                    "Its wings are too small to get " +
+                    "its fat little body off the ground. " +
+                    "The bee, of course, flies anyway " +
+                    "because bees don't care " +
+                    "what humans think is impossible." +
+                    "Yellow, black. Yellow, black. " +
+                    "Yellow, black. Yellow, black. " +
+                    "Ooh, black and yellow! " +
+                    "Let's shake it up a little. " +
+                    "Barry! Breakfast is ready! " +
+                    "Ooming! " +
+                    "Hang on a second. " +
+                    "Hello? " +
+                    "- Barry? " +
+                    "- Adam? " +
+                    "- Oan you believe this is happening? " +
+                    "- I can't. I'll pick you up. " +
+                    "Looking sharp. " +
+                    "Use the stairs. Your father " +
+                    "paid good money for those. " +
+                    "Sorry. I'm excited. " +
+                    "Here's the graduate. " +
+                    "We're very proud of you, son. " +
+                    "A perfect report card, all B's. " +
+                    "Very proud. " +
+                    "Ma! I got a thing going here. " +
+                    "- You got lint on your fuzz. " +
+                    "- Ow! That's me! " +
+                    "- Wave to us! We'll be in row 118,000. " +
+                    "- Bye! " +
+                    "Barry, I told you, " +
+                    "stop flying in the house! " +
+                    "- Hey, Adam. " +
+                    "- Hey, Barry. " +
+                    "- Is that fuzz gel? " +
+                    "- A little. Special day, graduation. " +
+                    "Never thought I'd make it. " +
+                    "Three days grade school, " +
+                    "three days high school. " +
+                    "Those were awkward. " +
+                    "Three days college. I'm glad I took " +
+                    "a day and hitchhiked around the hive. " +
+                    "You did come back different. " +
+                    "- Hi, Barry. " +
+                    "- Artie, growing a mustache? Looks good. " +
+                    "- Hear about Frankie? " +
+                    "- Yeah. " +
+                    "- You going to the funeral? " +
+                    "- No, I'm not going. " +
+                    "Everybody knows, " +
+                    "sting someone, you die. " +
+                    "Don't waste it on a squirrel. " +
+                    "Such a hothead. " +
+                    "I guess he could have " +
+                    "just gotten out of the way. " +
+                    "I love this incorporating " +
+                    "an amusement park into our day. " +
+                    "That's why we don't need vacations. " +
+                    "Boy, quite a bit of pomp... " +
+                    "under the circumstances. " +
+                    "- Well, Adam, today we are men. " +
+                    "- We are! " +
+                    "- Bee-men. " +
+                    "- Amen! " +
+                    "Hallelujah! " +
+                    "Students, faculty, distinguished bees, " +
+                    "please welcome Dean Buzzwell. " +
+                    "Welcome, New Hive Oity " +
+                    "graduating class of... " +
+                    "...9:15. " +
+                    "That concludes our ceremonies. " +
+                    "And begins your career " +
+                    "at Honex Industries! " +
+                    "Will we pick ourjob today? " +
+                    "I heard it's just orientation. " +
+                    "Heads up! Here we go. " +
+                    "Keep your hands and antennas " +
+                    "inside the tram at all times. " +
+                    "- Wonder what it'll be like? " +
+                    "- A little scary. " +
+                    "Welcome to Honex, " +
+                    "a division of Honesco " +
+                    "and a part of the Hexagon Group. " +
+                    "This is it!" +
+                    "Wow. " +
+                    "Wow. " +
+                    "We know that you, as a bee, " +
+                    "have worked your whole life " +
+                    "to get to the point where you " +
+                    "can work for your whole life. " +
+                    "Honey begins when our valiant Pollen " +
+                    "Jocks bring the nectar to the hive. " +
+                    "Our top-secret formula " +
+                    "is automatically color-corrected, " +
+                    "scent-adjusted and bubble-contoured " +
+                    "into this soothing sweet syrup " +
+                    "with its distinctive " +
+                    "golden glow you know as... " +
                     "Honey!", image);
             Story.stories.add(story1);
         } catch (Exception e) {
@@ -319,10 +185,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Story story4 = new Story("Hello", "World");
         Story story5 = new Story("Hello", "World");
         Story story6 = new Story("Hello", "World");
-
-
         Story.stories.add(story2);
-
         Story.stories.add(story4);
         Story.stories.add(story5);
         Story.stories.add(story6);

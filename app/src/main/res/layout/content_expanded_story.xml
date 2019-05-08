@@ -14,11 +14,36 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/headerImageView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_height"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/title_text_expanded" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/line_divider"
+            android:layout_marginLeft="@dimen/story_margin"
+            android:layout_marginRight="@dimen/story_margin"
+            android:layout_marginBottom="@dimen/story_margin"/>
+
         <TextView
             android:id="@+id/contentView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="@dimen/story_margin"
+            android:layout_marginRight="@dimen/story_margin"
+            android:layout_marginBottom="@dimen/story_margin"
             android:textColor="@color/textColor"
             android:textSize="@dimen/content_text_size" />
 
