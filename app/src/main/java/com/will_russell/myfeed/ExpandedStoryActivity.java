@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 
 public class ExpandedStoryActivity extends AppCompatActivity {
@@ -32,11 +36,17 @@ public class ExpandedStoryActivity extends AppCompatActivity {
 
         contentView = findViewById(R.id.contentView);
         contentView.setText(story.getContent());
-        headerImageView = findViewById(R.id.headerImageView);
+        //headerImageView = findViewById(R.id.headerImageView);
+
+        CollapsingToolbarLayout toolbarLayout = findViewById(R.id.toolbar_layout);
+
+
         if (story.getImages().size() > 0) {
-            headerImageView.setImageBitmap(story.getImages().get(0));
+            //headerImageView.setImageBitmap(story.getImages().get(0));
+            Drawable header = new BitmapDrawable(getResources(), story.getImages().get(0));
+            toolbarLayout.setBackground(header);
         } else {
-            headerImageView.setVisibility(View.GONE);
+            //headerImageView.setVisibility(View.GONE);
         }
     }
 

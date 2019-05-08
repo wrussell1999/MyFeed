@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
 
-        Story story = new Story("Selly Oak is dangerous", "More students stabbed");
+        Story story = new Story("Selly Oak is dangerous and wild. Please be careful", "More students stabbed");
         Story.stories.add(story);
         AssetManager assetManager = getAssets();
         InputStream input;
