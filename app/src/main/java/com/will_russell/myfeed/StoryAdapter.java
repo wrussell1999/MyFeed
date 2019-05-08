@@ -11,11 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> {
 
-    private final StoryFragment.InteractionListener mListener;
     Context context;
 
-    public StoryAdapter(StoryFragment.InteractionListener listener, Context context) {
-        mListener = listener;
+    public StoryAdapter(Context context) {
         this.context = context;
     }
 
@@ -61,10 +59,6 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
             titleView = view.findViewById(R.id.titleView);
             contentView = view.findViewById(R.id.contentView);
             imageView = view.findViewById(R.id.imageView);
-        }
-
-        private void bind(Story item) {
-
         }
     }
 }
