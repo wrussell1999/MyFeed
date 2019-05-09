@@ -58,24 +58,31 @@ public class ExpandedStoryActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.app_bar_like:
-                // Send data to server to train model
-                // - Like
-                // - Tags
-                return true;
-            case R.id.app_bar_dislike:
-                // Send data to server to train model
-                // - Dislike
-                // - Tags
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        case R.id.app_bar_like:
+            // Send data to server to train model
+            // - Like
+            // - Tags
+            return true;
+        case R.id.app_bar_dislike:
+            // Send data to server to train model
+            // - Dislike
+            // - Tags
+            return true;
+        case R.id.app_bar_share:
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, story.getUrl());
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
         }
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        finish();
-        return false;
+        onBackPressed();
+        return true;
     }
 }

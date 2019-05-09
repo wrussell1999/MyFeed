@@ -14,6 +14,7 @@ public class Story {
     private Bitmap sourceLogo;
     private String date;
     private String[] tags;
+    private String url;
     
     public static List<Story> stories = new ArrayList<>();
 
@@ -100,6 +101,10 @@ public class Story {
         return tags[index];
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -130,5 +135,9 @@ public class Story {
 
     public void setTag(int index, String tag) {
         tags[index] = tag;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

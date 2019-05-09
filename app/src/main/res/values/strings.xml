@@ -5,6 +5,8 @@
 
     <string name="like">I liked this content</string>
     <string name="dislike">I didn\'t like this content</string>
+    <string name="share">Share this story</string>
+    <string name="send_to">Send this story to someone</string>
 
     <string name="menu_refresh">Refresh</string>
 
