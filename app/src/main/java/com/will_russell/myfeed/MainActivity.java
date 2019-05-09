@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         try {
             input = assetManager.open("bee.jpg");
             image = BitmapFactory.decodeStream(input);
-            Story story3 = new Story("Hello", "World", "date", "https://github.com/wrussell1999", images);
+            Story story3 = new Story("There are exams soon!", "Believe or not, the exams are creeping up on us", "date", "https://github.com/wrussell1999", images, "UoB", null);
             images.add(image);
 
             Story.stories.add(story3);
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     "into this soothing sweet syrup " +
                     "with its distinctive " +
                     "golden glow you know as... " +
-                    "Honey!","date", "", images);
+                    "Honey!","date", "", images, "Bee Movie Corp", null);
             Story.stories.add(story1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke", "date", "https://github.com/wrussell1999", noImages);
         Story story4 = new Story("Hello", "World", "date", "https://github.com/wrussell1999", noImages);
         Story story5 = new Story("Hello", "World", "date", "https://github.com/wrussell1999", noImages);
-        Story story6 = new Story("Hello", "World", "date", "https://www.bbc.co.uk/ ", noImages);
+        Story story6 = new Story("Hello", "World", "date", "https://www.bbc.co.uk/ ", noImages, "Source", null);
         Story.stories.add(story);
         Story.stories.add(story2);
         Story.stories.add(story4);

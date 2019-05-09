@@ -35,11 +35,18 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         holder.mItem = Story.stories.get(position);
         holder.titleView.setText(holder.mItem.getTitle());
         holder.contentView.setText(holder.mItem.getContent());
+        holder.sourceView.setText(holder.mItem.getSource());
+        holder.dateView.setText(holder.mItem.getDate());
+
         if (holder.mItem.getImages().size() > 0) {
-            holder.imageView.setImageBitmap(holder.mItem.getImages().get(0));
+            holder.headerView.setImageBitmap(holder.mItem.getImages().get(0));
         } else {
-            holder.imageView.setVisibility(View.GONE);
+            holder.headerView.setVisibility(View.GONE);
         }
+        if (holder.mItem.getSourceLogo() != null) {
+            holder.sourceLogoView.setImageBitmap(holder.mItem.getSourceLogo());
+        }
+
         holder.mView.setClickable(true);
         holder.mView.setOnClickListener(v -> ((MainActivity) holder.mView.getContext()).openStory(position));
     }
@@ -49,7 +56,10 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         public final View mView;
         public final TextView titleView;
         public final TextView contentView;
-        public final ImageView imageView;
+        public final ImageView headerView;
+        public final TextView sourceView;
+        public final ImageView sourceLogoView;
+        public final TextView dateView;
 
         public Story mItem;
 
@@ -58,7 +68,10 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
             mView = view;
             titleView = view.findViewById(R.id.titleView);
             contentView = view.findViewById(R.id.contentView);
-            imageView = view.findViewById(R.id.imageView);
+            headerView = view.findViewById(R.id.imageView);
+            sourceView = view.findViewById(R.id.sourceView);
+            sourceLogoView = view.findViewById(R.id.sourceLogoView);
+            dateView = view.findViewById(R.id.dateView);
         }
     }
 }
