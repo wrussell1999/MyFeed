@@ -269,8 +269,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     public Bitmap convertImageToBitmap(String url) {
         try {
             InputStream is = (InputStream) new URL(url).getContent();
-            Drawable imageDrawable = Drawable.createFromStream(is, "");
-            Bitmap image = ((BitmapDrawable) imageDrawable).getBitmap();
+            Bitmap image = BitmapFactory.decodeStream(is);
             return image;
         } catch (Exception e) {
             e.printStackTrace();
