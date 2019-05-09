@@ -28,6 +28,7 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -210,14 +211,18 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         queue.start();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL, null, response -> {
             try {
-                story.setTitle(response.getJSONObject("story").getString("title"));
-                story.setContent(checkContent(response.getJSONObject("story").getString("content")));
-                story.setSummary(response.getJSONObject("story").getString("summary"));
-                story.setDate(shortenDate(response.getJSONObject("story").getString("date")));
-                story.setUrl(response.getJSONObject("story").getString("link"));
-                story.setImage(convertImageToBitmap(response.getJSONObject("story").getString("image")));
-                story.setSource(response.getJSONObject("source").getString("name"));
-                story.setSourceLogo(convertImageToBitmap(response.getJSONObject("source").getString("icon")));
+                JSONObject storyJson = response.getJSONObject("story");
+                story.setTitle(storyJson.getString("title"));
+                story.setContent(checkContent(storyJson.getString("content")));
+                story.setSummary(storyJson.getString("summary"));
+                story.setDate(shortenDate(storyJson.getString("date")));
+                story.setUrl(storyJson.getString("link"));
+                story.setImage(convertImageToBitmap(storyJson.getString("image")));
+
+                JSONObject sourceJson = response.getJSONObject("source");
+                story.setSource(sourceJson.getString("name"));
+                story.setSourceLogo(convertImageToBitmap(sourceJson.getString("icon")));
+
                 Story.stories.add(story);
             } catch (JSONException e) {
                 e.printStackTrace();
