@@ -1,8 +1,10 @@
 package com.will_russell.myfeed;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -74,6 +76,13 @@ public class ExpandedStoryActivity extends AppCompatActivity {
             sendIntent.putExtra(Intent.EXTRA_TEXT, story.getUrl());
             sendIntent.setType("text/plain");
             startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
+            return true;
+        case R.id.app_bar_open:
+            Uri uriUrl = Uri.parse(story.getUrl());
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            builder.setToolbarColor(getResources().getColor(R.color.colorPrimaryDark));
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.launchUrl(this, uriUrl);
             return true;
         default:
             return super.onOptionsItemSelected(item);

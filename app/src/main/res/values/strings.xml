@@ -7,6 +7,7 @@
     <string name="dislike">I didn\'t like this content</string>
     <string name="share">Share this story</string>
     <string name="send_to">Send this story to someone</string>
+    <string name="open_in_browser">Open original story</string>
 
     <string name="menu_refresh">Refresh</string>
 
