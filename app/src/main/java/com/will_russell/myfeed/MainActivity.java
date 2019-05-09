@@ -31,7 +31,8 @@ import org.json.JSONException;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -200,8 +201,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         swipeReloadRecyclerView();
     }
 
-    private void loadRecyclerViewData()
-    {
+    private void loadRecyclerViewData() {
         Story story = new Story();
         RequestQueue queue;
         Cache cache = new DiskBasedCache(this.getCacheDir(), 1024 * 1024);
@@ -211,9 +211,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL, null, response -> {
             try {
                 story.setTitle(response.getJSONObject("story").getString("title"));
-                story.setContent(response.getJSONObject("story").getString("content"));
+                story.setContent(checkContent(response.getJSONObject("story").getString("content")));
                 story.setSummary(response.getJSONObject("story").getString("summary"));
-                story.setDate(response.getJSONObject("story").getString("date"));
+                story.setDate(shortenDate(response.getJSONObject("story").getString("date")));
                 story.setUrl(response.getJSONObject("story").getString("link"));
                 story.setImage(convertImageToBitmap(response.getJSONObject("story").getString("image")));
                 story.setSource(response.getJSONObject("source").getString("name"));
@@ -278,6 +278,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     }
 
     public String shortenDate(String date) {
+        String month = new DateFormatSymbols().getMonths()[Integer.valueOf(date.substring(5, 6)) - 1];
+        String day = ordinal(Integer.valueOf(date.substring(8, 9)));
+        String time = date.substring(11, 15);
+        date = time + ", " + day + " " + month;
         return date;
+    }
+
+    public static String ordinal(int i) {
+        return i % 100 == 11 || i % 100 == 12 || i % 100 == 13 ? i + "th" : i + new String[]{"th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"}[i % 10];
     }
 }
