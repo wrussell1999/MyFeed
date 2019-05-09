@@ -22,11 +22,17 @@ import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -210,22 +216,26 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Network network = new BasicNetwork(new HurlStack());
         queue = new RequestQueue(cache, network);
         queue.start();
-        try {
-            StringRequest stringRequest = new StringRequest(Request.Method.GET, SERVER_URL, response -> {
-                String title = response;
-                String content = "";
-                String date = "";
-                String url = "";
-                Bitmap image = null;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL, null, response -> {
+            try {
+                story.setTitle(response.getString("title"));
+                story.setContent(response.getString("content"));
+                story.setDate(response.getString("date"));
+                story.setUrl(response.getString("url"));
+                Bitmap image = convertImageToBitmap(response.getString("image"));
                 ArrayList<Bitmap> images = new ArrayList<>();
-                String source = "";
-                Bitmap sourceLogo = null;
-            }, error -> Toast.makeText(getApplicationContext(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show());
-                //Story.stories.add(story);
-        queue.add(stringRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                if (image != null) {
+                    images.add(image);
+                }
+                story.setImages(images);
+                story.setSource(response.getString("souce"));
+                story.setSourceLogo(convertImageToBitmap(response.getString("sourceLogo")));
+                Story.stories.add(story);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> Toast.makeText(getApplicationContext(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show());
+        queue.add(jsonObjectRequest);
         notifyUpdate();
     }
 
