@@ -6,12 +6,12 @@
         android:id="@+id/app_bar_like"
         android:icon="@drawable/white_like"
         android:title="@string/like"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/app_bar_dislike"
         android:icon="@drawable/white_dislike"
         android:title="@string/dislike"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
 </menu>
