@@ -9,7 +9,8 @@ public class Story {
 
     private String title;
     private String content;
-    private ArrayList<Bitmap> images;
+    private String summary;
+    private Bitmap image;
     private String source;
     private Bitmap sourceLogo;
     private String date;
@@ -20,26 +21,23 @@ public class Story {
 
     public Story() {}
 
-    public Story(String title, String content, String date, String url, ArrayList<Bitmap> images) {
-        defaultStory(title, content, date, url, images);
+    public Story(String title, String content, String summary, String date, String url, Bitmap image) {
+        defaultStory(title, content, summary, date, url, image);
     }
 
-    public Story(String title, String content, String date, String url, ArrayList<Bitmap> images, String source, Bitmap sourceLogo) {
-        defaultStory(title, content, date, url, images);
+    public Story(String title, String content, String summary,  String date, String url, Bitmap image, String source, Bitmap sourceLogo) {
+        defaultStory(title, content, summary, date, url, image);
         this.source = source;
         this.sourceLogo = sourceLogo;
     }
 
-    public void defaultStory(String title, String content, String date, String url, ArrayList<Bitmap> images) {
+    public void defaultStory(String title, String content, String summary, String date, String url, Bitmap image) {
         this.title = title;
         this.content = content;
+        this.summary = summary;
         this.date = date;
         this.url = url;
-        this.images = images;
-    }
-
-    public void defaultSource(String source, Bitmap sourceLogo) {
-
+        this.image = image;
     }
 
     public String getTitle() {
@@ -50,12 +48,12 @@ public class Story {
         return content;
     }
 
-    public Bitmap getImage(int index) {
-        return images.get(index);
+    public String getSummary() {
+        return summary;
     }
 
-    public ArrayList<Bitmap> getImages() {
-        return images;
+    public Bitmap getImage() {
+        return image;
     }
 
     public String getSource() {
@@ -90,12 +88,12 @@ public class Story {
         this.content = content;
     }
 
-    public void setImage(int index, Bitmap image) {
-        this.images.set(index, image);
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
-    public void setImages(ArrayList<Bitmap> images) {
-        this.images = images;
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 
     public void setSource(String source) {

@@ -45,8 +45,8 @@ public class ExpandedStoryActivity extends AppCompatActivity {
         titleView.setText(story.getTitle());
         contentView.setText(story.getContent());
 
-        if (story.getImages().size() > 0) {
-            headerImageView.setImageBitmap(story.getImages().get(0));
+        if (story.getImage() != null) {
+            headerImageView.setImageBitmap(story.getImage());
         } else {
             headerImageView.setVisibility(View.GONE);
         }

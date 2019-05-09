@@ -34,12 +34,12 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = Story.stories.get(position);
         holder.titleView.setText(holder.mItem.getTitle());
-        holder.contentView.setText(holder.mItem.getContent());
+        holder.summaryView.setText(holder.mItem.getSummary());
         holder.sourceView.setText(holder.mItem.getSource());
         holder.dateView.setText(holder.mItem.getDate());
 
-        if (holder.mItem.getImages().size() > 0) {
-            holder.headerView.setImageBitmap(holder.mItem.getImages().get(0));
+        if (holder.mItem.getImage() != null) {
+            holder.headerView.setImageBitmap(holder.mItem.getImage());
         } else {
             holder.headerView.setVisibility(View.GONE);
         }
@@ -54,7 +54,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView titleView;
-        public final TextView contentView;
+        public final TextView summaryView;
         public final ImageView headerView;
         public final TextView sourceView;
         public final ImageView sourceLogoView;
@@ -66,7 +66,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
             super(view);
             mView = view;
             titleView = view.findViewById(R.id.titleView);
-            contentView = view.findViewById(R.id.contentView);
+            summaryView = view.findViewById(R.id.summaryView);
             headerView = view.findViewById(R.id.imageView);
             sourceView = view.findViewById(R.id.sourceView);
             sourceLogoView = view.findViewById(R.id.sourceLogoView);

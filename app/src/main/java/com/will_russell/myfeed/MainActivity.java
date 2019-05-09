@@ -68,12 +68,10 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         AssetManager assetManager = getAssets();
         InputStream input;
         Bitmap image;
-        ArrayList<Bitmap> images = new ArrayList<>();
         try {
             input = assetManager.open("bee.jpg");
             image = BitmapFactory.decodeStream(input);
-            Story story3 = new Story("There are exams soon!", "Believe or not, the exams are creeping up on us", "date", "https://github.com/wrussell1999", images, "UoB", null);
-            images.add(image);
+            Story story3 = new Story("There are exams soon!", "Believe or not, the exams are creeping up on us", "summary", "date", "https://github.com/wrussell1999", image, "UoB", null);
 
             Story.stories.add(story3);
             Story story1 = new Story("Bee Movie", "" +
@@ -179,18 +177,17 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     "into this soothing sweet syrup " +
                     "with its distinctive " +
                     "golden glow you know as... " +
-                    "Honey!","date", "", images, "Bee Movie Corp", null);
+                    "Honey!", "hello", "date", "", image, "Bee Movie Corp", null);
             Story.stories.add(story1);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        ArrayList<Bitmap> noImages = new ArrayList<>();
-        Story story = new Story("Selly Oak is dangerous and wild. Please be careful", "More students stabbed", "date", "https://github.com/wrussell1999", noImages);
-        Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke", "date", "https://github.com/wrussell1999", noImages);
-        Story story4 = new Story("Hello", "World", "date", "https://github.com/wrussell1999", noImages);
-        Story story5 = new Story("Hello", "World", "date", "https://github.com/wrussell1999", noImages);
-        Story story6 = new Story("Hello", "World", "date", "https://www.bbc.co.uk/ ", noImages, "Source", null);
+        Story story = new Story("Selly Oak is dangerous and wild. Please be careful", "More students stabbed", "ya" ,"date", "https://github.com/wrussell1999", null);
+        Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke", "date", "oof", "https://github.com/wrussell1999", null);
+        Story story4 = new Story("Hello", "Oof", "World", "date", "https://github.com/wrussell1999", null);
+        Story story5 = new Story("Hello", "World", "Summary", "date", "https://github.com/wrussell1999", null);
+        Story story6 = new Story("Hello", "World", "Summary", "date", "https://www.bbc.co.uk/ ", null, "Source", null);
         Story.stories.add(story);
         Story.stories.add(story2);
         Story.stories.add(story4);
@@ -213,18 +210,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         queue.start();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL, null, response -> {
             try {
-                story.setTitle(response.getString("title"));
-                story.setContent(response.getString("content"));
-                story.setDate(response.getString("date"));
-                story.setUrl(response.getString("url"));
-                Bitmap image = convertImageToBitmap(response.getString("image"));
-                ArrayList<Bitmap> images = new ArrayList<>();
-                if (image != null) {
-                    images.add(image);
-                }
-                story.setImages(images);
-                story.setSource(response.getString("source"));
-                story.setSourceLogo(convertImageToBitmap(response.getString("sourceLogo")));
+                story.setTitle(response.getJSONObject("story").getString("title"));
+                story.setContent(response.getJSONObject("story").getString("content"));
+                story.setSummary(response.getJSONObject("story").getString("summary"));
+                story.setDate(response.getJSONObject("story").getString("date"));
+                story.setUrl(response.getJSONObject("story").getString("link"));
+                story.setImage(convertImageToBitmap(response.getJSONObject("story").getString("image")));
+                story.setSource(response.getJSONObject("source").getString("name"));
+                story.setSourceLogo(convertImageToBitmap(response.getJSONObject("source").getString("icon")));
                 Story.stories.add(story);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -278,5 +271,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             e.printStackTrace();
             return null;
         }
+    }
+
+    public String checkContent(String content) {
+        return content;
+    }
+
+    public String shortenDate(String date) {
+        return date;
     }
 }
