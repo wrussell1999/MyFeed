@@ -22,17 +22,12 @@ import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -228,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     images.add(image);
                 }
                 story.setImages(images);
-                story.setSource(response.getString("souce"));
+                story.setSource(response.getString("source"));
                 story.setSourceLogo(convertImageToBitmap(response.getString("sourceLogo")));
                 Story.stories.add(story);
             } catch (JSONException e) {
