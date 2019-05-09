@@ -51,7 +51,6 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         holder.mView.setOnClickListener(v -> ((MainActivity) holder.mView.getContext()).openStory(position));
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView titleView;

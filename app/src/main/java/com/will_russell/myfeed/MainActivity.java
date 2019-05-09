@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +29,7 @@ import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
@@ -218,8 +221,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                 String source = "";
                 Bitmap sourceLogo = null;
             }, error -> Toast.makeText(getApplicationContext(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show());
-            //Story.stories.add(story);
-            queue.add(stringRequest);
+                //Story.stories.add(story);
+        queue.add(stringRequest);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -258,5 +261,17 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         Intent intent = new Intent(this, ExpandedStoryActivity.class);
         intent.putExtra("position", position);
         startActivity(intent);
+    }
+
+    public Bitmap convertImageToBitmap(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable imageDrawable = Drawable.createFromStream(is, "");
+            Bitmap image = ((BitmapDrawable) imageDrawable).getBitmap();
+            return image;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
