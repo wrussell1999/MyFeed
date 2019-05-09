@@ -1,8 +1,5 @@
 package com.will_russell.myfeed;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.browser.customtabs.CustomTabsIntent;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +9,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
+
 import com.google.android.material.bottomappbar.BottomAppBar;
+
+import org.apache.commons.validator.routines.UrlValidator;
 
 public class ExpandedStoryActivity extends AppCompatActivity {
 
@@ -36,7 +38,6 @@ public class ExpandedStoryActivity extends AppCompatActivity {
         int position = intent.getIntExtra("position", 0);
         story = Story.stories.get(position);
 
-
         titleView = findViewById(R.id.titleView);
         contentView = findViewById(R.id.contentView);
         headerImageView = findViewById(R.id.headerImageView);
@@ -53,12 +54,19 @@ public class ExpandedStoryActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_appbar, menu);
+        String[] schemes = {"http","https"};
+        UrlValidator urlValidator = new UrlValidator(schemes);
+        if (!urlValidator.isValid(story.getUrl())) {
+            getMenuInflater().inflate(R.menu.menu_appbar_nourl, menu);
+        } else {
+            getMenuInflater().inflate(R.menu.menu_appbar, menu);
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
         case R.id.app_bar_like:
             // Send data to server to train model

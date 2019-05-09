@@ -18,55 +18,28 @@ public class Story {
     
     public static List<Story> stories = new ArrayList<>();
 
-    public Story(String title, String content) {
-        this.title = title;
-        this.content = content;
-        this.images = new ArrayList<>();
+    public Story() {}
+
+    public Story(String title, String content, String date, String url, ArrayList<Bitmap> images) {
+        defaultStory(title, content, date, url, images);
     }
 
-    public Story(String title, String content, Bitmap image) {
-        this.title = title;
-        this.content = content;
-        this.images = new ArrayList<>();
-        this.images.add(image);
+    public Story(String title, String content, String date, String url, ArrayList<Bitmap> images, String source, Bitmap sourceLogo) {
+        defaultStory(title, content, date, url, images);
+        this.source = source;
+        this.sourceLogo = sourceLogo;
     }
 
-    public Story(String title, String content, ArrayList<Bitmap> images) {
+    public void defaultStory(String title, String content, String date, String url, ArrayList<Bitmap> images) {
         this.title = title;
         this.content = content;
+        this.date = date;
+        this.url = url;
         this.images = images;
     }
-    
-    public Story(String title, String content, String source) {
-        this.title = title;
-        this.content = content;
-        this.images = new ArrayList<>();
-        this.source = source;
-    }
-    
-    public Story(String title, String content, String source, Bitmap sourceLogo) {
-        this.title = title;
-        this.content = content;
-        this.images = new ArrayList<>();
-        this.source = source;
-        this.sourceLogo = sourceLogo;
-    }
 
-    public Story(String title, String content, Bitmap image, String source, Bitmap sourceLogo) {
-        this.title = title;
-        this.content = content;
-        this.images = new ArrayList<>();
-        this.images.add(image);
-        this.source = source;
-        this.sourceLogo = sourceLogo;
-    }
+    public void defaultSource(String source, Bitmap sourceLogo) {
 
-    public Story(String title, String content, ArrayList<Bitmap> images, String source, Bitmap sourceLogo) {
-        this.title = title;
-        this.content = content;
-        this.images = images;
-        this.source = source;
-        this.sourceLogo = sourceLogo;
     }
 
     public String getTitle() {
@@ -75,6 +48,10 @@ public class Story {
 
     public String getContent() {
         return content;
+    }
+
+    public Bitmap getImage(int index) {
+        return images.get(index);
     }
 
     public ArrayList<Bitmap> getImages() {
@@ -113,7 +90,11 @@ public class Story {
         this.content = content;
     }
 
-    public void setImage(ArrayList<Bitmap> images) {
+    public void setImage(int index, Bitmap image) {
+        this.images.set(index, image);
+    }
+
+    public void setImages(ArrayList<Bitmap> images) {
         this.images = images;
     }
 

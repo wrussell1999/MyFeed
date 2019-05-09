@@ -33,10 +33,10 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = Story.stories.get(position);
-        holder.titleView.setText(Story.stories.get(position).getTitle());
-        holder.contentView.setText(Story.stories.get(position).getContent());
-        if (Story.stories.get(position).getImages().size() > 0) {
-            holder.imageView.setImageBitmap(Story.stories.get(position).getImages().get(0));
+        holder.titleView.setText(holder.mItem.getTitle());
+        holder.contentView.setText(holder.mItem.getContent());
+        if (holder.mItem.getImages().size() > 0) {
+            holder.imageView.setImageBitmap(holder.mItem.getImages().get(0));
         } else {
             holder.imageView.setVisibility(View.GONE);
         }

@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             loadRecyclerViewData();
         });
 
-        Story story = new Story("Selly Oak is dangerous and wild. Please be careful", "More students stabbed");
-        Story.stories.add(story);
         AssetManager assetManager = getAssets();
         InputStream input;
         Bitmap image;
@@ -69,8 +67,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         try {
             input = assetManager.open("bee.jpg");
             image = BitmapFactory.decodeStream(input);
+            Story story3 = new Story("Hello", "World", "date", "https://github.com/wrussell1999", images);
             images.add(image);
-            Story story3 = new Story("Hello", "World", image);
+
             Story.stories.add(story3);
             Story story1 = new Story("Bee Movie", "" +
                     "According to all known laws" +
@@ -175,16 +174,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
                     "into this soothing sweet syrup " +
                     "with its distinctive " +
                     "golden glow you know as... " +
-                    "Honey!", image);
+                    "Honey!","date", "", images);
             Story.stories.add(story1);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke", images);
-        Story story4 = new Story("Hello", "World");
-        Story story5 = new Story("Hello", "World");
-        Story story6 = new Story("Hello", "World");
+        ArrayList<Bitmap> noImages = new ArrayList<>();
+        Story story = new Story("Selly Oak is dangerous and wild. Please be careful", "More students stabbed", "date", "https://github.com/wrussell1999", noImages);
+        Story story2 = new Story("Brummy Memes", "Saturday exams are an absolute joke", "date", "https://github.com/wrussell1999", noImages);
+        Story story4 = new Story("Hello", "World", "date", "https://github.com/wrussell1999", noImages);
+        Story story5 = new Story("Hello", "World", "date", "https://github.com/wrussell1999", noImages);
+        Story story6 = new Story("Hello", "World", "date", "https://www.bbc.co.uk/ ", noImages);
+        Story.stories.add(story);
         Story.stories.add(story2);
         Story.stories.add(story4);
         Story.stories.add(story5);
@@ -198,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private void loadRecyclerViewData()
     {
+        Story story = new Story();
         RequestQueue queue;
         Cache cache = new DiskBasedCache(this.getCacheDir(), 1024 * 1024);
         Network network = new BasicNetwork(new HurlStack());
@@ -207,9 +210,14 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             StringRequest stringRequest = new StringRequest(Request.Method.GET, SERVER_URL, response -> {
                 String title = response;
                 String content = "";
+                String date = "";
+                String url = "";
+                Bitmap image = null;
                 ArrayList<Bitmap> images = new ArrayList<>();
-                Story.stories.add(new Story(title, content, images));
+                String source = "";
+                Bitmap sourceLogo = null;
             }, error -> Toast.makeText(getApplicationContext(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show());
+            //Story.stories.add(story);
             queue.add(stringRequest);
         } catch (Exception e) {
             e.printStackTrace();
